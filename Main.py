@@ -3,12 +3,12 @@ import math as m
 import os
 from itertools import cycle
 
-def encrypt(__m,key0,iv=""):
+def encrypt(__m,key0,iv="",n=10):
 	cv = cycle(iv)
 	
 	table = np.array([next(cv) if len(iv)>0 else 0 for _ in range(m.ceil(len(iv)/256)*256)]).reshape((-1,16,16))
 	
-	for iter in range(100000):
+	for iter in range(n):
 	    for i in range(len(table)):
 	        box = lambda x: table[i]["0123456789abcdef".index(x[1])]["0123456789abcdef".index(x[0])]
 	        
